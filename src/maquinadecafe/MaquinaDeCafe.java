@@ -9,15 +9,17 @@ public class MaquinaDeCafe
     {
         Scanner scan = new Scanner (System.in);
         
-        //Bebida [] pedido = new Bebida[20];
+        
         int bebida;
         int tipoCafe;
         int tipoTe;
         int azucar = 0;
         int leche = 0;
-        double iva = 0.21;
+        int totalAzucar = 0;
+        int totalLeche = 0;
         double precioTotal = 0;
         double precio = 0;
+        String pedidoTotal = "";
         
         System.out.println("Bienvenido a la maquina de Cafe/Te");
         System.out.println("Cuantas bebidas va a llevar?");
@@ -90,15 +92,17 @@ public class MaquinaDeCafe
             {
                 System.out.println("Opcion no valida.");
             }
+            totalAzucar = totalAzucar + azucar;
+            totalLeche = totalLeche + leche;
             precio = precio + pedido[i].precio() + (azucar*5) + (leche*5);
-            precioTotal = precioTotal + pedido[i].precio() + (azucar*5) + (leche*5) * iva;
-            
-            System.out.println(pedido[i].descripcion()+" con "+azucar+" de azucar y "+leche+" de leche");
-            System.out.println("SUBTOTAL: "+precio);
-            System.out.println("TOTAL: "+precioTotal);
+            precioTotal = ((precioTotal + (precio * 21)) / 100)+precio;
+            pedidoTotal = pedidoTotal +" "+ pedido[i].descripcion();
             
         }
        
+        System.out.println(pedidoTotal+" con "+totalAzucar+" de azucar y "+totalLeche+" de leche");
+        System.out.println("SUBTOTAL: "+precio);
+        System.out.println("TOTAL: "+precioTotal);
         
         
        
